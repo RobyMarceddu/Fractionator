@@ -1,0 +1,103 @@
+html:has(.fractionator), body:has(.fractionator), .fractionator {
+  background: #191b1c;
+}
+
+.fractionator {
+  --surface: #383b3d;
+  --ink: #191b1c;
+  --purple: #7020df;
+  --paper: #f3f1fe;
+}
+
+.fractionator .app-header { justify-content: flex-start; gap: 8px 16px; }
+.fractionator .brand { font-size: 1.625rem; }
+.fractionator .brand-mark {
+  color: var(--ink);
+  background: #f7b0fc;
+  border: 0;
+  border-radius: 8px;
+}
+.fractionator .tagline { color: #c2c9cc; }
+.fractionator .panel { border: 0; border-radius: 8px; padding: 0; background: var(--surface); }
+.fractionator .panel-inner { padding: clamp(16px, 2.5vw, 28px); }
+.fractionator .panel-title { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+.fractionator .display-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 14px;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 50% 0%, #f7b0fc 0%, #aa92f8 55%, #7293ef 100%);
+}
+/* A circular construction echoes the pie chart across the unused display area. */
+.fractionator .display-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  right: -6%;
+  top: -42%;
+  height: 185%;
+  aspect-ratio: 1;
+  opacity: .2;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, transparent 0 13%, #481194 13% 13.4%, transparent 13.4% 16%);
+}
+.fractionator .display-inner { min-height: clamp(190px, 22vw, 245px); }
+.fractionator .eyebrow { color: var(--ink); font-weight: 700; }
+.fractionator :is(.display-meta, .expression-line, .result-line, .error-message) { color: var(--ink); }
+.fractionator .expression-line { flex-wrap: nowrap; overflow-x: auto; padding: 3px; }
+.fractionator .expression-operand { flex: none; max-width: none; overflow: visible; }
+.fractionator .expression-operand.stacked .expression-field:first-child { border-color: currentColor; }
+.fractionator .expression-field:is(.is-active, :hover) { color: var(--ink); background: #feeffe88; box-shadow: none; }
+.fractionator .expression-field:focus-visible { outline: 2px solid var(--ink); outline-offset: 0; }
+.fractionator .result-line { min-height: 1.82em; font-size: clamp(2.625rem, 6vw, 4rem); }
+.fractionator .result-placeholder { font-weight: 700; }
+
+.fractionator .keypad-grid { max-width: 358px; gap: 8px; margin: 20px auto 16px; }
+.fractionator .calculator-key {
+  min-width: 0;
+  max-width: none;
+  min-height: 48px;
+  height: clamp(48px, 5vw, 60px);
+  aspect-ratio: auto;
+  border: 1.2px solid #456aea;
+  border-radius: 12px;
+  background: var(--surface);
+  color: #feeffe;
+}
+.fractionator .key-zero { grid-column: span 2; }
+.fractionator .keyboard-help { margin-top: 4px; }
+.fractionator .graph-empty, .fractionator .graph-result {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 6px;
+  background-color: var(--surface);
+}
+.fractionator .empty-chart { color: #aa92f8; }
+.fractionator .fraction-disk :is(path, circle) {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+}
+.fractionator .sector-major { stroke: #cf20df; }
+.fractionator .sector-minor { stroke: #f7b0fc; }
+.fractionator .steps-empty, .fractionator .calculation-steps {
+  margin: 14px 0 0;
+  padding: 16px;
+  border-radius: 6px;
+  background: #383B3D;
+  color: var(#FEEFFE);
+}
+.fractionator .step-formula, .fractionator .final-step .step-title { color: var(#9BA3A8); }
+.fractionator .example-button {
+  margin-top: 12px;
+  border-color: currentColor;
+  color: var(#FEEFFE);
+}
+.fractionator .example-button:focus-visible { outline-color: var(#9BA3A8); }
+
+@media (min-width: 768px) {
+  .fractionator .workspace { flex-direction: row-reverse; }
+}
